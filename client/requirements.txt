@@ -1,0 +1,7 @@
+youtube-search-python
+pytube
+eyed3
+python-dotenv 
+spotipy
+requests
+yt-dlp

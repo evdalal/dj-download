@@ -13,12 +13,12 @@ client_secret = os.getenv('REACT_APP_CLIENT_SECRET')
 redirect_uri = os.getenv('REACT_APP_REDIRECT_URI')
 
 scope = ['playlist-read-private', 'playlist-read-collaborative','user-read-private','user-library-read']
-username = 'jasper2360'
+username = 'ed582'
 
 token = util.prompt_for_user_token(username, scope=scope, client_id=client_id, client_secret=client_secret, redirect_uri=redirect_uri)
 sp = spotipy.Spotify(auth=token)
 
-playlist_location = 'downloads/'
+playlist_location = 'downloads/spotifyDownloadedSongs'
 downloader = Download()
 
 def get_playlist_tracks(playlist_id):
@@ -40,15 +40,15 @@ def download_playlist(playlist_id):
         track_name = re.sub('[^a-zA-Z0-9 ]', '', track['track']['name'])
         track_id = track['track']['id']
         artist_details = track['track']['artists']
-        artst_names = []
+        artist_names = []
 
         for artist in artist_details:
-            artst_names.append(artist['name'])
+            artist_names.append(artist['name'])
 
         photo_url = track['track']['album']['images'][0]['url']
         track_location = f'{playlist_location}/{playlist_name}'
 
-        downloader.download_track(track_name, artst_names, photo_url, track_location)
+        downloader.download_track(track_name, artist_names, photo_url, track_location)
 
 if __name__ == '__main__':
-    download_playlist('4zhhoLLHUxmss6Qk6R651z')
+    download_playlist('1TrAc56xVfca83PV7UDWTE')
